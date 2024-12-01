@@ -1,7 +1,7 @@
 import Auth from "./components/Auth";
 import ListHeader from "./components/ListHeader";
 import ListItem from "./components/ListItem";
-import { useEffect, useState } from "react";
+import { useCookiesffect, useState } from "react";
 import { useCookies } from "react-cookie"; // Corrigido: importação correta do hook
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
+  useCookiesffect(() => {
     if (authToken) {
       getData(); 
     }
