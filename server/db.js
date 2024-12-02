@@ -1,11 +1,17 @@
-const Pool = require("pg").Pool;
-require("dotenv").config();
+require('dotenv').config();
+const { Client } = require('pg');
 
-const pool = new Pool({
+const client = new Client({
   user: process.env.USERNAME,
-  password: process.env.PASSWORD,
   host: process.env.HOST,
+  database: process.env.DATABASE,
+  password: process.env.PASSWORD,
   port: process.env.DBPORT,
-  database: "todoapp",
+  ssl: {
+    rejectUnauthorized: false,  // Não rejeita certificados não autorizados (importante em ambientes de desenvolvimento)
+  }
 });
-module.exports = pool;
+
+client.connect()
+  .then(() => console.log('Connected to the database!'))
+  .catch((err) => console.error('Connection error', err.stack));
